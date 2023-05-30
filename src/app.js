@@ -1,9 +1,10 @@
 const path = require('path');
 const express = require('express');
 const body_parser = require('body-parser');
+require('dotenv').config({ path: path.join(__dirname, "../cred.env") });
 
 const app = express();
-const port = 3002;
+const port = process.env.PORT;
 
 const public_directory = path.join(__dirname, "../public");
 const views_directory = path.join(__dirname, "../templates/views");
