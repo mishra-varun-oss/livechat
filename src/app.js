@@ -11,6 +11,9 @@ const views_directory = path.join(__dirname, "../templates/views");
 
 const index = require(path.join(__dirname, "./routes/index.js"));
 const create = require(path.join(__dirname, "./routes/create.js"));
+const chat = require(path.join(__dirname, "./routes/chat.js"));
+
+const wsServer = require(path.join(__dirname, "./websocket.js"));
 
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
@@ -20,7 +23,12 @@ app.set("views", views_directory);
 
 app.use('/', index);
 app.use('/create', create);
+app.use('/chat', chat);
 
-app.listen(port, () => {
-	console.log(`laalwood.com is running on port ${port}`);
+const server = app.listen(port);
+server.on('upgrade', (request, socket, head) => {
+	//figure out pathname logic
+	wsServer.handleUpgrade(request, socket, head, (ws) => {
+		wsServer.emit('connection', ws, request);
+	})
 })
