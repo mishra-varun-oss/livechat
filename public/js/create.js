@@ -17,10 +17,9 @@ async function post(url = "", data = {}) {
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 
-	let host_name = form.elements[0].value;
-	let password = form.elements[1].value;
+	let password = form.elements[0].value;
 
-	post("https://laalwood.com/create", { name: host_name, password: password })
+	post("https://laalwood.com/create", { password: password })
 	.then((data) => {
 		if (data.status) {
 			let uid = data.uid;

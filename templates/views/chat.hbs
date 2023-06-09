@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, intitial-scale=1">
 		<title>chat</title>
+		<link href="/css/chat.css" rel="stylesheet">
 	</head>
 
 	<body>
-		<h1>welcome to chat</h1>
+		<div class="container">
+			<form id="entrance_form">
+				<div class="section" id="identity">
+					<input type="text" placeholder="What is your first name?" name="name">
+				</div>
+				<div class="section hidden" id="password">enter password</div>
+			</form>
+		</div>
 		<script src="/js/chat.js"></script>
 	</body>
 </html>

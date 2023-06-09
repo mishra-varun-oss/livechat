@@ -27,8 +27,11 @@ app.use('/chat', chat);
 
 const server = app.listen(port);
 server.on('upgrade', (request, socket, head) => {
-	//figure out pathname logic
-	wsServer.handleUpgrade(request, socket, head, (ws) => {
-		wsServer.emit('connection', ws, request);
-	})
+	if (request.url === '/chat') {
+		wsServer.handleUpgrade(request, socket, head, (ws) => {
+			wsServer.emit('connection', ws, request);
+		})
+	} else {
+		socket.destroy();
+	}
 })
