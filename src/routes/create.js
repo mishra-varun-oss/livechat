@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
 	let password = req.body.password;
 	let uid = utils.generate_uid(5);
 	
-	let q = `INSERT INTO chats VALUES (default, '', '${password}', '', 1, '${uid}')`;
+	let q = `INSERT INTO chats VALUES (default, '${password}', 1, '${uid}')`;
 	db.query(q, (err, results) => {
 		if (err) throw err;
 
