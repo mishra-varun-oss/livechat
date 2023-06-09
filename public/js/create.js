@@ -19,7 +19,7 @@ form.addEventListener("submit", (e) => {
 
 	let password = form.elements[0].value;
 
-	post("https://laalwood.com/create", { password: password })
+	post(window.location, { password: password })
 	.then((data) => {
 		if (data.status) {
 			let uid = data.uid;
